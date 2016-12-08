@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
 	Uint8 demarrer = 0;
 	Uint8 compteur = 0;
 	
-	demarrer=chargerJeu("/home/yoshi100/Bureau/dev/C/emuchip8/BC_test.ch8") ;
+	demarrer=chargerJeu("/home/yoshi100/Bureau/dev/C/emuchip8/MAZE") ;
 	
 	if(demarrer == 1){
 		do{

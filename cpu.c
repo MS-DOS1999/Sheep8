@@ -356,7 +356,7 @@ void interpreterOpcode(Uint16 opcode) {
 				
      case 32:{ 
 				cpu.memoire[cpu.I] = (cpu.V[b3]-cpu.V[b3]%100)/100; //stocke les centaines
-				cpu.memoire[cpu.I+1] = (cpu.V[b3]-cpu.V[b3]%10)/10; //stocke les dizaines
+				cpu.memoire[cpu.I+1] = (((cpu.V[b3]-cpu.V[b3]%10)/10)%10); //stocke les dizaines
 				cpu.memoire[cpu.I+2] = cpu.V[b3]-cpu.memoire[cpu.I]*100-10*cpu.memoire[cpu.I+1];//les unités
                 break; 
 				} 
@@ -394,10 +394,10 @@ void dessinerEcran(Uint8 b1,Uint8 b2, Uint8 b3) {
      for(k=0;k<b1;k++) { 
             codage=cpu.memoire[cpu.I+k];//on récupère le codage de la ligne à dessiner 
 
-            y=(cpu.V[b2]+k)%WIDTH_CHIP8;//on calcule l'ordonnée de la ligne à dessiner, on ne doit pas dépasser WIDTH_CHIP8
+            y=(cpu.V[b2]+k)%HEIGHT_CHIP8;//on calcule l'ordonnée de la ligne à dessiner, on ne doit pas dépasser WIDTH_CHIP8
 
             for(j=0,decalage=7;j<8;j++,decalage--) { 
-                x=(cpu.V[b3]+j)%HEIGHT_CHIP8; //on calcule l'abscisse, on ne doit pas dépasser HEIGHT_CHIP8
+                x=(cpu.V[b3]+j)%WIDTH_CHIP8; //on calcule l'abscisse, on ne doit pas dépasser HEIGHT_CHIP8
 
                         if(((codage)&(0x1<<decalage))!=0) {   			//si c'est blanc  //on récupère le bit correspondant
                             if( pixel[x][y].color==WHITE) { 			//le pixel était blanc
