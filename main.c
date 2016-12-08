@@ -19,6 +19,9 @@ Mix_Chunk *son;
 
 int main(int argc, char *argv[]){
 	
+	char filePath[200];
+printf("Indiquez le 'chemin absolu/absolute path' de votre rom :  ");
+scanf("%[^\n]", filePath);
 	
 	initSDL();
 	initScreen();
@@ -34,7 +37,7 @@ int main(int argc, char *argv[]){
 	
 	son = Mix_LoadWAV("sound/beep.wav");
 	
-	demarrer=chargerJeu("/home/yoshi100/Bureau/dev/C/emuchip8/roms/PONG") ;
+	demarrer=chargerJeu(filePath) ;
 	
 	if(demarrer == 1){
 		do{
@@ -126,8 +129,9 @@ Uint8 chargerJeu(char *nomJeu)
         return 1; 
     } 
     else { 
+		
 		printf("Error opening file: %s.\n", strerror(errno));
-      perror("Error");
+      
       return 0; 
     } 
 
@@ -191,3 +195,4 @@ while(SDL_PollEvent(&event)) {
 } 
     return continuer; 
 }
+
