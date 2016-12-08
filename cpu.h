@@ -17,6 +17,7 @@ typedef struct {
 	Uint8 compteurSon; //permet de jouer des sons
 	Uint16 programCounter; //permet de parcourir le tableau "memoire" initialisé à 16 bit car le tableau à une longueur de 4096 . 
 														//Uint8 va de 0 à 255. Uint16 va de 0 à 65 535. 
+	Uint8 touche[16]; //tableau touche, il y a 16 touches sur la chip 8
 	
 } CPU;
 
@@ -39,4 +40,5 @@ void initialiserJump () ;
 Uint8 recupererAction(Uint16) ;
 void interpreterOpcode(Uint16) ;
 void dessinerEcran(Uint8 ,Uint8 , Uint8 );
+Uint8 attendAppui(Uint8);
 #endif

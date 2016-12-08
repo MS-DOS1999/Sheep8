@@ -12,6 +12,7 @@ void initCpu() {			//on initialise le CPU donc tous les objets de la matrice pr�
 	for(i=0; i<16; i++){			//initialisation du registre et de la pile
 		cpu.V[i] = 0;
 		cpu.pile[i] = 0;
+		cpu.touche[i] = 0;
 	}
 	
 	cpu.programCounter = DEBUT_RAM; 		//on initialise le program counter à 512 qui est le debut de la RAM.
@@ -308,12 +309,16 @@ void interpreterOpcode(Uint16 opcode) {
 				} 
 				
      case 24:{ 
-				
+				if(cpu.touche[cpu.V[b3]] == 1) { 		//1 = pressé ; 
+					cpu.programCounter += 2; 
+				} 
                 break; 
 				} 
 				
     case 25:{ 
-                
+                if(cpu.touche[cpu.V[b3]] == 0) {		//0 = relâché
+					cpu.programCounter += 2;
+				}
                 break; 
                } 
                
@@ -323,7 +328,7 @@ void interpreterOpcode(Uint16 opcode) {
 				} 
 				
      case 27:{ 
-				
+				attendAppui(b3);
                 break; 
 				} 
 				
@@ -415,5 +420,44 @@ void dessinerEcran(Uint8 b1,Uint8 b2, Uint8 b3) {
             } 
         } 
 
+}
+
+Uint8 attendAppui(Uint8 b3) { 
+    Uint8 attend=1,continuer=1; 
+
+    while(attend) { 
+        SDL_WaitEvent(&event); 
+
+            switch(event.type) { 
+                 case SDL_QUIT:{ continuer=0; attend=0; break;} 
+
+                case SDL_KEYDOWN:{ 
+
+                    switch(event.key.keysym.sym) { 
+
+												case SDLK_KP0:{ cpu.V[b3]=0x0;cpu.touche[0x0]=1;attend=0;break;} 
+                                                case SDLK_KP7:{ cpu.V[b3]=0x1;cpu.touche[0x1]=1;attend=0;break;} 
+                                                case SDLK_KP8:{ cpu.V[b3]=0x2;cpu.touche[0x2]=1;attend=0;break;} 
+                                                case SDLK_KP9:{ cpu.V[b3]=0x3;cpu.touche[0x3]=1;attend=0;break;}
+                                                case SDLK_KP4:{ cpu.V[b3]=0x4;cpu.touche[0x4]=1;attend=0;break;} 
+                                                case SDLK_KP5:{ cpu.V[b3]=0x5;cpu.touche[0x5]=1;attend=0;break;} 
+                                                case SDLK_KP6:{ cpu.V[b3]=0x6;cpu.touche[0x6]=1;attend=0;break;} 
+                                                case SDLK_KP1:{ cpu.V[b3]=0x7;cpu.touche[0x7]=1;attend=0;break;}
+                                                case SDLK_KP2:{ cpu.V[b3]=0x8;cpu.touche[0x8]=1;attend=0;break;} 
+                                                case SDLK_KP3:{ cpu.V[b3]=0x9;cpu.touche[0x9]=1;attend=0;break;} 
+                                               case SDLK_KP_PERIOD:{ cpu.V[b3]=0xA;cpu.touche[0xA]=1;attend=0;break;}
+                                               case SDLK_KP_ENTER:{ cpu.V[b3]=0xB;cpu.touche[0xB]=1;attend=0;break;}
+                                               case SDLK_KP_MINUS:{ cpu.V[b3]=0xC;cpu.touche[0xC]=1;attend=0;break;}
+                                               case SDLK_KP_PLUS:{ cpu.V[b3]=0xD;cpu.touche[0xD]=1;attend=0;break;}
+                                               case SDLK_KP_MULTIPLY:{ cpu.V[b3]=0xE;cpu.touche[0xE]=1;attend=0;break;}
+                                               case SDLK_KP_DIVIDE:{ cpu.V[b3]=0xF;cpu.touche[0xF]=1;attend=0;break;}
+                            default:{ break;} 
+                    } break;} 
+
+          default:{ break;} 
+      } 
+    } 
+
+ return continuer; 
 }
 
