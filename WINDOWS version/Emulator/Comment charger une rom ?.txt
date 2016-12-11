@@ -1,0 +1,3 @@
+Indiquer le chemin de votre rom dans le fichier PATHROM.txt.
+
+Exemple :	C:\User\Bureau\roms\*nom de votre rom*
