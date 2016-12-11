@@ -1,3 +1,5 @@
 Indiquer le chemin de votre rom dans le fichier PATHROM.txt.
 
 Exemple :	C:\User\Bureau\roms\*nom de votre rom*
+
+Lancer l'émulateur et voila le jeu se lance :)

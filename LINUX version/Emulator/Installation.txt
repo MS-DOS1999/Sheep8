@@ -1,0 +1,24 @@
+Bonjour,
+
+Vous devez installer SDL pour faire fonctionner cette emulateur
+
+ecrivez cette ligne dans le terminal pour installer SDL 1.2 :
+--------------------------------------------
+sudo apt-get install libsdl1.2
+--------------------------------------------
+
+Ensuite allez dans le dossier ou est l'émulateur et donner l'autorisation d'execution :
+--------------------------------------------
+sudo chmod +x sheep8
+--------------------------------------------
+
+Puis toujours dans le repertoire de l'émulateur, executez le :
+--------------------------------------------
+./sheep8
+--------------------------------------------
+
+L'émulateur vous demandez le chemin de votre rom, ecrivez donc le.
+
+Exemple : /home/Bureau/roms/*le_de_votre_rom*
+
+Et voila votre jeu se lance :) 
