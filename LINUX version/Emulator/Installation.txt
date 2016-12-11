@@ -4,7 +4,7 @@ Vous devez installer SDL pour faire fonctionner cette emulateur
 
 ecrivez cette ligne dans le terminal pour installer SDL 1.2 :
 --------------------------------------------
-sudo apt-get install libsdl1.2
+sudo apt-get install libsdl1.2debian
 --------------------------------------------
 
 Ensuite allez dans le dossier ou est l'émulateur et donner l'autorisation d'execution :
